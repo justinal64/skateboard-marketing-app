@@ -12,7 +12,7 @@ export default function Footer() {
             BOLTS
           </span>
           <div className="flex gap-8 text-sm font-semibold uppercase tracking-widest text-text-dim opacity-60">
-            {["Features", "How It Works", "Team", "Privacy", "Contact"].map((link) => (
+            {["Features", "How It Works", "Privacy", "Contact"].map((link) => (
               <a
                 key={link}
                 href="#"

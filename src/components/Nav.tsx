@@ -26,11 +26,6 @@ export default function Nav() {
               How It Works
             </a>
           </li>
-          <li>
-            <a href="#team" className="transition-colors hover:text-secondary">
-              Team
-            </a>
-          </li>
         </ul>
         <a
           href="#waitlist"
