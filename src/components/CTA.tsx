@@ -1,6 +1,33 @@
 "use client";
 
+import { useState } from "react";
+
 export default function CTA() {
+  const [email, setEmail] = useState("");
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [message, setMessage] = useState("");
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    setStatus("loading");
+
+    const res = await fetch("/api/waitlist", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email }),
+    });
+
+    const data = await res.json();
+
+    if (res.ok) {
+      setStatus("success");
+      setEmail("");
+    } else {
+      setStatus("error");
+      setMessage(data.error ?? "Something went wrong. Try again.");
+    }
+  }
+
   return (
     <section id="waitlist" className="px-6 py-24">
       <div className="mx-auto max-w-7xl">
@@ -53,51 +80,86 @@ export default function CTA() {
             get notified the moment it drops — plus early access perks.
           </p>
 
-          <form
-            className="relative mx-auto flex max-w-md flex-col gap-3 sm:flex-row"
-            onSubmit={(e) => e.preventDefault()}
-          >
-            <input
-              type="email"
-              placeholder="your@email.com"
-              className="flex-1 rounded-full px-5 py-3 text-sm text-white placeholder-text-dim/40 outline-none transition-all"
+          {status === "success" ? (
+            <div
+              className="relative mx-auto max-w-md rounded-2xl px-6 py-4"
               style={{
-                backgroundColor: "rgba(255,255,255,0.05)",
-                border: "1px solid #2A2A4A",
-              }}
-              onFocus={(e) => {
-                e.currentTarget.style.borderColor = "#00FFFF";
-                e.currentTarget.style.boxShadow =
-                  "0 0 14px rgba(0,255,255,0.25)";
-              }}
-              onBlur={(e) => {
-                e.currentTarget.style.borderColor = "#2A2A4A";
-                e.currentTarget.style.boxShadow = "none";
-              }}
-            />
-            <button
-              type="submit"
-              className="rounded-full px-6 py-3 text-sm font-bold uppercase tracking-widest text-background transition-all"
-              style={{
-                backgroundColor: "#FF00FF",
-                boxShadow: "0 0 18px rgba(255,0,255,0.5)",
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.boxShadow =
-                  "0 0 28px rgba(255,0,255,0.75)";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.boxShadow =
-                  "0 0 18px rgba(255,0,255,0.5)";
+                backgroundColor: "rgba(0,255,255,0.08)",
+                border: "1px solid rgba(0,255,255,0.3)",
               }}
             >
-              Notify Me
-            </button>
-          </form>
+              <p
+                className="font-bold"
+                style={{ color: "#00FFFF" }}
+              >
+                You&apos;re on the list!
+              </p>
+              <p className="mt-1 text-sm text-text-dim opacity-70">
+                We&apos;ll ping you the moment BOLTS launches.
+              </p>
+            </div>
+          ) : (
+            <form
+              className="relative mx-auto flex max-w-md flex-col gap-3 sm:flex-row"
+              onSubmit={handleSubmit}
+            >
+              <input
+                type="email"
+                placeholder="your@email.com"
+                value={email}
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                  if (status === "error") setStatus("idle");
+                }}
+                required
+                disabled={status === "loading"}
+                className="flex-1 rounded-full px-5 py-3 text-sm text-white placeholder-text-dim/40 outline-none transition-all disabled:opacity-50"
+                style={{
+                  backgroundColor: "rgba(255,255,255,0.05)",
+                  border: `1px solid ${status === "error" ? "rgba(255,80,80,0.6)" : "#2A2A4A"}`,
+                }}
+                onFocus={(e) => {
+                  if (status !== "error")
+                    e.currentTarget.style.borderColor = "#00FFFF";
+                  e.currentTarget.style.boxShadow = "0 0 14px rgba(0,255,255,0.25)";
+                }}
+                onBlur={(e) => {
+                  if (status !== "error")
+                    e.currentTarget.style.borderColor = "#2A2A4A";
+                  e.currentTarget.style.boxShadow = "none";
+                }}
+              />
+              <button
+                type="submit"
+                disabled={status === "loading"}
+                className="rounded-full px-6 py-3 text-sm font-bold uppercase tracking-widest text-background transition-all disabled:opacity-60"
+                style={{
+                  backgroundColor: "#FF00FF",
+                  boxShadow: "0 0 18px rgba(255,0,255,0.5)",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.boxShadow = "0 0 28px rgba(255,0,255,0.75)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.boxShadow = "0 0 18px rgba(255,0,255,0.5)";
+                }}
+              >
+                {status === "loading" ? "Joining…" : "Notify Me"}
+              </button>
+            </form>
+          )}
 
-          <p className="relative mt-6 text-xs text-text-dim opacity-40">
-            No spam. Just a ping when we launch.
-          </p>
+          {status === "error" && (
+            <p className="relative mt-3 text-sm" style={{ color: "rgba(255,120,120,0.9)" }}>
+              {message}
+            </p>
+          )}
+
+          {status !== "success" && (
+            <p className="relative mt-6 text-xs text-text-dim opacity-40">
+              No spam. Just a ping when we launch.
+            </p>
+          )}
         </div>
       </div>
     </section>
