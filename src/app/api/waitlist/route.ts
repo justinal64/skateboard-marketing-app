@@ -3,21 +3,26 @@ import { db } from "@/lib/firebase-admin";
 import { FieldValue } from "firebase-admin/firestore";
 
 export async function POST(req: NextRequest) {
-  const { email } = await req.json();
+  try {
+    const { email } = await req.json();
 
-  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-    return NextResponse.json({ error: "Invalid email address." }, { status: 400 });
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      return NextResponse.json({ error: "Invalid email address." }, { status: 400 });
+    }
+
+    const normalized = email.toLowerCase().trim();
+    const ref = db.collection("waitlist").doc(normalized);
+    const existing = await ref.get();
+
+    if (existing.exists) {
+      return NextResponse.json({ error: "You're already on the list!" }, { status: 409 });
+    }
+
+    await ref.set({ email: normalized, joinedAt: FieldValue.serverTimestamp() });
+
+    return NextResponse.json({ ok: true });
+  } catch (err) {
+    console.error("[waitlist]", err);
+    return NextResponse.json({ error: "Server error. Please try again." }, { status: 500 });
   }
-
-  const normalized = email.toLowerCase().trim();
-  const ref = db.collection("waitlist").doc(normalized);
-  const existing = await ref.get();
-
-  if (existing.exists) {
-    return NextResponse.json({ error: "You're already on the list!" }, { status: 409 });
-  }
-
-  await ref.set({ email: normalized, joinedAt: FieldValue.serverTimestamp() });
-
-  return NextResponse.json({ ok: true });
 }
