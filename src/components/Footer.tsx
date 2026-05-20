@@ -1,5 +1,15 @@
 "use client";
 
+import Link from "next/link";
+
+const footerLinks: { label: string; href: string }[] = [
+  { label: "Features", href: "/#features" },
+  { label: "How It Works", href: "/#how-it-works" },
+  { label: "Privacy", href: "/privacy" },
+  { label: "Terms", href: "/terms" },
+  { label: "Support", href: "/support" },
+];
+
 export default function Footer() {
   return (
     <footer className="px-6 py-12" style={{ borderTop: "1px solid #2A2A4A" }}>
@@ -11,11 +21,11 @@ export default function Footer() {
           >
             BOLTS
           </span>
-          <div className="flex gap-8 text-sm font-semibold uppercase tracking-widest text-text-dim opacity-60">
-            {["Features", "How It Works", "Privacy", "Contact"].map((link) => (
-              <a
-                key={link}
-                href="#"
+          <div className="flex flex-wrap justify-center gap-8 text-sm font-semibold uppercase tracking-widest text-text-dim opacity-60">
+            {footerLinks.map(({ label, href }) => (
+              <Link
+                key={label}
+                href={href}
                 className="transition-colors hover:opacity-100"
                 style={{ color: "inherit" }}
                 onMouseEnter={(e) =>
@@ -27,8 +37,8 @@ export default function Footer() {
                     "inherit")
                 }
               >
-                {link}
-              </a>
+                {label}
+              </Link>
             ))}
           </div>
           <p className="text-sm text-text-dim opacity-30">
