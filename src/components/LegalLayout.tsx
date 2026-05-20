@@ -53,9 +53,13 @@ export default function LegalLayout({
               >
                 {section.heading}
               </h2>
-              <p className="leading-relaxed text-text-dim opacity-80">
-                {section.body}
-              </p>
+              <div className="space-y-3">
+                {section.body.split("\n\n").map((para, j) => (
+                  <p key={j} className="leading-relaxed text-text-dim opacity-80">
+                    {para}
+                  </p>
+                ))}
+              </div>
             </section>
           ))}
         </div>
