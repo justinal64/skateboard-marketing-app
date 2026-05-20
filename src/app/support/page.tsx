@@ -33,8 +33,16 @@ export default function SupportPage() {
             >
               Contact Us
             </h2>
-            <p className="mb-4 leading-relaxed text-text-dim opacity-80">
-              [Placeholder — add a support email address or contact form here.]
+            <p className="leading-relaxed text-text-dim opacity-80">
+              Have a question, bug report, or feedback? Reach us at{" "}
+              <a
+                href="mailto:support@boltsapp.com"
+                className="font-semibold transition-colors"
+                style={{ color: "#00FFFF" }}
+              >
+                support@boltsapp.com
+              </a>
+              . We aim to respond within 2 business days.
             </p>
           </section>
 
@@ -43,31 +51,21 @@ export default function SupportPage() {
               className="mb-3 text-lg font-bold uppercase tracking-widest"
               style={{ color: "#00FFFF" }}
             >
-              Frequently Asked Questions
+              Remove Me from the Waitlist
             </h2>
-            <div className="space-y-6">
-              {[
-                {
-                  q: "[Placeholder question 1]",
-                  a: "[Placeholder answer 1]",
-                },
-                {
-                  q: "[Placeholder question 2]",
-                  a: "[Placeholder answer 2]",
-                },
-                {
-                  q: "[Placeholder question 3]",
-                  a: "[Placeholder answer 3]",
-                },
-              ].map((item, i) => (
-                <div key={i}>
-                  <p className="mb-1 font-semibold text-foreground">{item.q}</p>
-                  <p className="leading-relaxed text-text-dim opacity-80">
-                    {item.a}
-                  </p>
-                </div>
-              ))}
-            </div>
+            <p className="leading-relaxed text-text-dim opacity-80">
+              To remove your email from our waitlist or delete any personal data
+              we hold, email us at{" "}
+              <a
+                href="mailto:support@boltsapp.com"
+                className="font-semibold transition-colors"
+                style={{ color: "#00FFFF" }}
+              >
+                support@boltsapp.com
+              </a>{" "}
+              with the subject line &quot;Delete my data.&quot; We will process
+              your request within 30 days.
+            </p>
           </section>
 
           <section>
@@ -78,7 +76,20 @@ export default function SupportPage() {
               Delete Your Account
             </h2>
             <p className="leading-relaxed text-text-dim opacity-80">
-              [Placeholder — both app stores require a clear account deletion path. Describe how users can request deletion of their account and data.]
+              Once BOLTS launches, you can delete your account and all
+              associated data directly from the app under{" "}
+              <span className="font-semibold text-foreground">
+                Settings → Account → Delete Account
+              </span>
+              . You can also email{" "}
+              <a
+                href="mailto:support@boltsapp.com"
+                className="font-semibold transition-colors"
+                style={{ color: "#00FFFF" }}
+              >
+                support@boltsapp.com
+              </a>{" "}
+              to request deletion at any time.
             </p>
           </section>
         </div>
