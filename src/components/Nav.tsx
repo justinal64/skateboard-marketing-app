@@ -15,14 +15,14 @@ export default function Nav() {
         </Link>
         <ul className="hidden items-center gap-9 text-xs text-foreground/80 md:flex">
           <li>
-            <a href="#features" className="transition-colors hover:text-foreground">
+            <Link href="/#features" className="transition-colors hover:text-foreground">
               Features
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="#how-it-works" className="transition-colors hover:text-foreground">
+            <Link href="/#how-it-works" className="transition-colors hover:text-foreground">
               How it works
-            </a>
+            </Link>
           </li>
           <li>
             <Link href="/support" className="transition-colors hover:text-foreground">
