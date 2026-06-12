@@ -1,10 +1,8 @@
-"use client";
-
 import Link from "next/link";
 
 const footerLinks: { label: string; href: string }[] = [
   { label: "Features", href: "/#features" },
-  { label: "How It Works", href: "/#how-it-works" },
+  { label: "How it works", href: "/#how-it-works" },
   { label: "Privacy", href: "/privacy" },
   { label: "Terms", href: "/terms" },
   { label: "Support", href: "/support" },
@@ -12,36 +10,24 @@ const footerLinks: { label: string; href: string }[] = [
 
 export default function Footer() {
   return (
-    <footer className="px-6 py-12" style={{ borderTop: "1px solid #2A2A4A" }}>
-      <div className="mx-auto max-w-7xl">
+    <footer className="border-t border-hairline/40 px-6 py-10">
+      <div className="mx-auto max-w-5xl">
         <div className="flex flex-col items-center justify-between gap-6 md:flex-row">
-          <span
-            className="text-2xl font-black tracking-widest text-primary"
-            style={{ textShadow: "0 0 12px rgba(255,0,255,0.7)" }}
-          >
+          <span className="text-xs font-semibold tracking-[0.18em] text-muted">
             BOLTS
           </span>
-          <div className="flex flex-wrap justify-center gap-8 text-sm font-semibold uppercase tracking-widest text-text-dim opacity-60">
+          <div className="flex flex-wrap justify-center gap-x-7 gap-y-3 text-xs text-muted">
             {footerLinks.map(({ label, href }) => (
               <Link
                 key={label}
                 href={href}
-                className="transition-colors hover:opacity-100"
-                style={{ color: "inherit" }}
-                onMouseEnter={(e) =>
-                  ((e.currentTarget as HTMLAnchorElement).style.color =
-                    "#00FFFF")
-                }
-                onMouseLeave={(e) =>
-                  ((e.currentTarget as HTMLAnchorElement).style.color =
-                    "inherit")
-                }
+                className="transition-colors hover:text-foreground"
               >
                 {label}
               </Link>
             ))}
           </div>
-          <p className="text-sm text-text-dim opacity-30">
+          <p className="text-xs text-muted/70">
             &copy; {new Date().getFullYear()} Bolts. All rights reserved.
           </p>
         </div>

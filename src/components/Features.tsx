@@ -1,115 +1,103 @@
-"use client";
+import Reveal from "@/components/Reveal";
 
 const features = [
   {
-    id: 1,
-    icon: "🛹",
-    title: "Trick Logger",
+    eyebrow: "Trick logger",
+    title: "Every trick you land, remembered.",
     description:
-      "Tap to log any trick you land. Tag it by type, difficulty, and location. Never lose track of what you've learned.",
-    accentColor: "#FF00FF",
-    accentGlow: "rgba(255,0,255,0.3)",
-    borderHover: "rgba(255,0,255,0.6)",
-    glowHover: "0 8px 32px rgba(255,0,255,0.35)",
+      "Tap to log any trick after your session. Tag it by type, difficulty, and spot — your whole bag, in one place.",
+    span: "md:col-span-2",
+    accent: "text-[#ff5cff]",
+    icon: (
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M9 11l3 3L22 4" />
+        <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11" />
+      </svg>
+    ),
   },
   {
-    id: 2,
-    icon: "📈",
-    title: "Progress Tracking",
+    eyebrow: "Progress",
+    title: "See yourself getting better.",
     description:
-      "See your growth over days, weeks, and months. Streaks, milestones, and a full history of every session.",
-    accentColor: "#00FFFF",
-    accentGlow: "rgba(0,255,255,0.25)",
-    borderHover: "rgba(0,255,255,0.5)",
-    glowHover: "0 8px 32px rgba(0,255,255,0.25)",
+      "Streaks, milestones, and a full history of every session — over days, weeks, and months.",
+    span: "",
+    accent: "text-accent",
+    icon: (
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M3 17l6-6 4 4 8-8" />
+        <path d="M14 7h7v7" />
+      </svg>
+    ),
   },
   {
-    id: 3,
-    icon: "🎯",
-    title: "Goal Setting",
+    eyebrow: "Goals",
+    title: "Pick a trick. Land it.",
     description:
-      "Set a trick as your next goal and BOLTS walks you through it — tips, checkpoints, and a celebration when you land it.",
-    accentColor: "#00FFFF",
-    accentGlow: "rgba(0,255,255,0.25)",
-    borderHover: "rgba(0,255,255,0.5)",
-    glowHover: "0 8px 32px rgba(0,255,255,0.25)",
+      "Set your next trick as a goal and BOLTS walks you through it — tips, checkpoints, and a celebration when you roll away.",
+    span: "",
+    accent: "text-accent",
+    icon: (
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <circle cx="12" cy="12" r="9" />
+        <circle cx="12" cy="12" r="4.5" />
+        <circle cx="12" cy="12" r="0.5" fill="currentColor" />
+      </svg>
+    ),
   },
   {
-    id: 4,
-    icon: "📊",
-    title: "Personal Stats",
+    eyebrow: "Stats",
+    title: "Your skating, by the numbers.",
     description:
-      "Your total tricks landed, favorite spots, best streak, and a breakdown of every category in your arsenal.",
-    accentColor: "#FF00FF",
-    accentGlow: "rgba(255,0,255,0.2)",
-    borderHover: "rgba(255,0,255,0.5)",
-    glowHover: "0 8px 32px rgba(255,0,255,0.2)",
+      "Total tricks landed, favorite spots, best streak, and a breakdown of every category in your arsenal.",
+    span: "md:col-span-2",
+    accent: "text-[#ff5cff]",
+    icon: (
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M5 20V10" />
+        <path d="M12 20V4" />
+        <path d="M19 20v-7" />
+      </svg>
+    ),
   },
 ];
 
 export default function Features() {
   return (
-    <section id="features" className="px-6 py-24">
-      <div className="mx-auto max-w-7xl">
-        <div className="mb-12">
-          <div
-            className="mb-3 inline-block rounded-xl border-2 px-4 py-1"
-            style={{
-              borderColor: "#FF00FF",
-              backgroundColor: "rgba(255,0,255,0.08)",
-              boxShadow: "0 0 10px rgba(255,0,255,0.2)",
-            }}
-          >
-            <p
-              className="text-sm font-black uppercase tracking-widest"
-              style={{
-                color: "#FFCCFF",
-                textShadow: "0 0 8px rgba(255,0,255,0.7)",
-              }}
-            >
-              Features
-            </p>
-          </div>
-          <h2 className="text-4xl font-black tracking-tight text-foreground md:text-5xl">
-            Everything You Need to Level Up
+    <section id="features" className="px-6 py-28">
+      <div className="mx-auto max-w-5xl">
+        <Reveal>
+          <h2 className="mb-3 text-4xl font-semibold tracking-tight text-foreground md:text-5xl">
+            Get to know BOLTS.
           </h2>
-        </div>
+          <p className="mb-12 max-w-xl text-lg text-muted">
+            Everything you need to level up, nothing you don&apos;t.
+          </p>
+        </Reveal>
 
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {features.map((feature) => (
-            <div
-              key={feature.id}
-              className="group relative cursor-default overflow-hidden rounded-2xl border p-6 transition-all duration-300 hover:-translate-y-1"
-              style={{ backgroundColor: "#1A1A3A", borderColor: "#2A2A4A" }}
-              onMouseEnter={(e) => {
-                const el = e.currentTarget;
-                el.style.borderColor = feature.borderHover;
-                el.style.boxShadow = feature.glowHover;
-              }}
-              onMouseLeave={(e) => {
-                const el = e.currentTarget;
-                el.style.borderColor = "#2A2A4A";
-                el.style.boxShadow = "none";
-              }}
+        <div className="grid gap-5 md:grid-cols-3">
+          {features.map((feature, i) => (
+            <Reveal
+              key={feature.eyebrow}
+              delay={i * 0.08}
+              className={feature.span}
             >
-              <div
-                className="mb-4 flex h-14 w-14 items-center justify-center rounded-2xl text-2xl"
-                style={{
-                  backgroundColor: `${feature.accentColor}18`,
-                  boxShadow: `0 0 16px ${feature.accentGlow}`,
-                }}
-              >
-                {feature.icon}
+              <div className="h-full rounded-[1.75rem] border border-hairline/60 bg-surface p-8 md:p-10">
+                <div className={`mb-6 ${feature.accent}`}>{feature.icon}</div>
+                <p className="mb-2 text-xs font-semibold uppercase tracking-widest text-muted">
+                  {feature.eyebrow}
+                </p>
+                <h3
+                  className={`mb-3 max-w-md text-2xl font-semibold tracking-tight text-foreground ${
+                    feature.span ? "md:text-3xl" : ""
+                  }`}
+                >
+                  {feature.title}
+                </h3>
+                <p className="max-w-md leading-relaxed text-muted">
+                  {feature.description}
+                </p>
               </div>
-              <h3
-                className="mb-2 text-lg font-bold text-foreground"
-              >
-                {feature.title}
-              </h3>
-              <p className="text-sm leading-relaxed text-text-dim opacity-70">
-                {feature.description}
-              </p>
-            </div>
+            </Reveal>
           ))}
         </div>
       </div>

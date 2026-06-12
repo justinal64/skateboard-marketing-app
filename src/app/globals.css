@@ -1,23 +1,27 @@
 @import "tailwindcss";
 
 :root {
-  --background: #0D0D25;
-  --card: #1A1A3A;
-  --primary: #FF00FF;
-  --secondary: #00FFFF;
-  --foreground: #FFFFFF;
-  --text-dim: #E0E0FF;
-  --border-neon: #2A2A4A;
+  --background: #0d0d25;
+  --surface: #16163a;
+  --surface-elevated: #1d1d44;
+  --foreground: #ffffff;
+  --muted: #9a9ac4;
+  --accent: #00ffff;
+  --accent-button: #ff00ff;
+  --accent-button-hover: #ff47ff;
+  --hairline: #2a2a4a;
 }
 
 @theme inline {
   --color-background: var(--background);
-  --color-card: var(--card);
-  --color-primary: var(--primary);
-  --color-secondary: var(--secondary);
+  --color-surface: var(--surface);
+  --color-surface-elevated: var(--surface-elevated);
   --color-foreground: var(--foreground);
-  --color-text-dim: var(--text-dim);
-  --color-border-neon: var(--border-neon);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-accent-button: var(--accent-button);
+  --color-accent-button-hover: var(--accent-button-hover);
+  --color-hairline: var(--hairline);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
@@ -29,5 +33,12 @@ html {
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), -apple-system, BlinkMacSystemFont,
+    "Helvetica Neue", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: rgba(255, 0, 255, 0.35);
 }

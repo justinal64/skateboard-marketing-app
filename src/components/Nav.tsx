@@ -1,41 +1,40 @@
+import Link from "next/link";
+
 export default function Nav() {
   return (
     <nav
-      className="fixed top-0 z-50 w-full backdrop-blur-md"
-      style={{
-        backgroundColor: "rgba(13,13,37,0.85)",
-        borderBottom: "1px solid #2A2A4A",
-        boxShadow: "0 0 20px rgba(0,255,255,0.08)",
-      }}
+      className="fixed top-0 z-50 w-full border-b border-white/10 backdrop-blur-xl backdrop-saturate-150"
+      style={{ backgroundColor: "rgba(13,13,37,0.72)" }}
     >
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-        <span
-          className="text-2xl font-black tracking-widest text-primary"
-          style={{ textShadow: "0 0 12px rgba(255,0,255,0.7)" }}
+      <div className="mx-auto flex h-12 max-w-5xl items-center justify-between px-6">
+        <Link
+          href="/"
+          className="text-sm font-semibold tracking-[0.18em] text-foreground transition-opacity hover:opacity-70"
         >
           BOLTS
-        </span>
-        <ul className="hidden gap-8 text-sm font-semibold uppercase tracking-widest text-text-dim md:flex">
+        </Link>
+        <ul className="hidden items-center gap-9 text-xs text-foreground/80 md:flex">
           <li>
-            <a href="#features" className="transition-colors hover:text-secondary">
+            <a href="#features" className="transition-colors hover:text-foreground">
               Features
             </a>
           </li>
           <li>
-            <a href="#how-it-works" className="transition-colors hover:text-secondary">
-              How It Works
+            <a href="#how-it-works" className="transition-colors hover:text-foreground">
+              How it works
             </a>
+          </li>
+          <li>
+            <Link href="/support" className="transition-colors hover:text-foreground">
+              Support
+            </Link>
           </li>
         </ul>
         <a
           href="#waitlist"
-          className="rounded-full px-5 py-2 text-sm font-bold uppercase tracking-widest text-background transition-all"
-          style={{
-            backgroundColor: "#00FFFF",
-            boxShadow: "0 0 14px rgba(0,255,255,0.5)",
-          }}
+          className="rounded-full bg-accent-button px-3.5 py-1.5 text-xs font-medium text-white shadow-[0_0_14px_rgba(255,0,255,0.3)] transition-colors hover:bg-accent-button-hover"
         >
-          Join Waitlist
+          Join waitlist
         </a>
       </div>
     </nav>

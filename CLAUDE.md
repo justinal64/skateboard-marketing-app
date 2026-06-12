@@ -23,7 +23,7 @@ There is no test suite configured yet.
 **Next.js 16 App Router** with **React 19** and **Tailwind CSS v4**.
 
 - `src/app/` — file-system routes. `layout.tsx` is the root shell; `page.tsx` composes the landing page from components.
-- `src/components/` — presentational components: `Nav`, `Hero`, `Products`, `Team`, `CTA`, `Footer`. All are currently Server Components.
+- `src/components/` — presentational components: `Nav`, `Hero`, `Features`, `HowItWorks`, `CTA`, `Footer`, `LegalLayout`. All are Server Components except `CTA` (waitlist form state) and `SmoothScrollProvider`. `Products` and `Team` are unused leftovers from an earlier design.
 - Path alias `@/*` resolves to `src/*`.
 
 ### Server vs. Client Components
@@ -36,6 +36,10 @@ Tailwind v4 uses a CSS-first config: `src/app/globals.css` imports Tailwind via 
 
 ### Styling Conventions
 
-- Dark-first design: base background `#0a0a0a`, primary accent `orange-500` (`#f97316`).
-- Hover/interactive states use Tailwind utility variants (`hover:`, `group-hover:`).
+- Apple-inspired structure with a neon palette: dark navy background (`#0d0d25`), white foreground, `#9a9ac4` muted lavender for secondary copy, cyan accent (`#00ffff`) for links/highlights, magenta (`#ff00ff`) for buttons, `#16163a` surface cards, hairline borders (`#2a2a4a`).
+- Typography: sentence-case headlines, `font-semibold tracking-tight`. Hero headline uses a magenta→white→cyan gradient via `bg-clip-text text-transparent`. No all-caps display text.
+- Neon glow is allowed only as restrained `box-shadow` on primary buttons and the phone mockup — never as text shadow, and never more than ~0.5 alpha.
+- All theme colors are exposed as Tailwind utilities via `@theme` in `globals.css` (`bg-surface`, `text-muted`, `text-accent`, `bg-accent-button`, `border-hairline`).
+- Animations use the `motion` library (`motion/react`): shared `Reveal` component (`src/components/Reveal.tsx`) for scroll-triggered fade-ups; `Hero` animates its entrance directly. Don't hand-roll keyframe animations.
+- Hover/interactive states use Tailwind utility variants (`hover:`, `group-hover:`, `focus:`) — never inline JS mouse handlers.
 - Inline `style` props are used only where Tailwind cannot express the value (e.g., complex radial gradients).
