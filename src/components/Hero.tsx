@@ -39,8 +39,14 @@ export default function Hero() {
 
       <div className="relative mx-auto max-w-3xl text-center">
         <FadeUp delay={0}>
-          <p className="mb-4 text-base font-semibold text-accent md:text-lg">
-            Coming soon to iOS and Android
+          <p className="mb-4 text-base font-semibold md:text-lg">
+            <a
+              href="https://apps.apple.com/us/app/bolts-skateboarding/id6757627895"
+              className="text-accent underline-offset-4 hover:underline"
+            >
+              Now on the iOS App Store
+            </a>
+            <span className="text-muted"> · Coming soon to Android</span>
           </p>
         </FadeUp>
         <FadeUp delay={0.1}>
